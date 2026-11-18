@@ -3,8 +3,8 @@
   --bg-alt: #f1efe9;
   --text: #1d2321;
   --muted: #5b6461;
-  --accent: #0f7a6c;
-  --accent-dark: #0b5e53;
+  --accent: #8a4a26;
+  --accent-dark: #6b3519;
   --border: #dcd8cf;
   --error: #b42318;
   --radius: 14px;
@@ -119,7 +119,7 @@ p {
 input:focus-visible,
 textarea:focus-visible,
 .link:focus-visible {
-  outline: 3px solid rgba(15, 122, 108, 0.35);
+  outline: 3px solid rgba(138, 74, 38, 0.35);
   outline-offset: 2px;
 }
 
@@ -140,7 +140,7 @@ textarea:focus-visible,
 }
 
 .btn--ghost:hover {
-  background: rgba(15, 122, 108, 0.08);
+  background: rgba(138, 74, 38, 0.08);
   color: var(--accent-dark);
 }
 
@@ -151,7 +151,7 @@ textarea:focus-visible,
 /* Hero */
 .hero {
   padding: 64px 0 56px;
-  background: radial-gradient(circle at 90% 10%, rgba(15, 122, 108, 0.12), transparent 55%);
+  background: radial-gradient(circle at 90% 10%, rgba(138, 74, 38, 0.12), transparent 55%);
 }
 
 .eyebrow {
@@ -204,7 +204,7 @@ textarea:focus-visible,
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(15, 122, 108, 0.1);
+  background: rgba(138, 74, 38, 0.1);
   color: var(--accent);
   font-size: 1.3rem;
   margin-bottom: 14px;
@@ -213,6 +213,33 @@ textarea:focus-visible,
 .card p {
   color: var(--muted);
   margin: 0;
+}
+
+/* Visit */
+.visit {
+  display: grid;
+  gap: 16px;
+}
+
+.hours {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hours li:last-child {
+  border-bottom: 0;
 }
 
 /* Contact */
@@ -337,6 +364,11 @@ textarea[aria-invalid="true"] {
   }
   .cards {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .visit {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 48px;
+    align-items: center;
   }
   .contact {
     grid-template-columns: 1fr 1.2fr;

@@ -5,7 +5,7 @@
 // Si defines la variable de entorno VITE_FORM_ENDPOINT (por ejemplo, la URL
 // de un formulario de Formspree), los mensajes se envían de verdad a esa URL.
 
-const STORAGE_KEY = "estudio-brisa:mensajes";
+const STORAGE_KEY = "cafe-la-esquina:mensajes";
 const ENDPOINT = import.meta.env?.VITE_FORM_ENDPOINT;
 
 export const SAMPLE_MESSAGES = [
@@ -13,14 +13,14 @@ export const SAMPLE_MESSAGES = [
     id: "ejemplo-1",
     name: "Lucía Pérez",
     email: "lucia@ejemplo.com",
-    message: "Hola, me interesa rediseñar la web de mi tienda.",
+    message: "¿Puedo reservar mesa para 6 el sábado a las 10?",
     createdAt: "2026-11-01T10:00:00.000Z",
   },
   {
     id: "ejemplo-2",
     name: "Marcos Gil",
     email: "marcos@ejemplo.com",
-    message: "¿Hacéis también logotipos?",
+    message: "Quería encargar una tarta de zanahoria para el viernes.",
     createdAt: "2026-11-02T16:30:00.000Z",
   },
 ];

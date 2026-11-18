@@ -3,20 +3,26 @@ import { getMessages, resetMessages, sendContactMessage } from "./contactService
 
 const SERVICES = [
   {
-    icon: "◐",
-    title: "Diseño web",
-    text: "Webs rápidas y claras que se ven perfectas en el móvil y convierten visitas en clientes.",
+    icon: "☕",
+    title: "Café de especialidad",
+    text: "Grano tostado en pequeños lotes, espresso, cortado y cafés de filtro preparados al momento.",
   },
   {
-    icon: "✦",
-    title: "Branding",
-    text: "Logotipo, colores y tipografías con personalidad, coherentes en todos tus canales.",
+    icon: "🥐",
+    title: "Desayunos y meriendas",
+    text: "Tostadas con pan de masa madre, zumo natural y bollería recién horneada cada mañana.",
   },
   {
-    icon: "↗",
-    title: "SEO",
-    text: "Que te encuentren en Google: contenidos, velocidad y ficha de negocio optimizados.",
+    icon: "🍰",
+    title: "Repostería casera",
+    text: "Tartas y bizcochos hechos aquí. Encárgalos para cumpleaños y celebraciones.",
   },
+];
+
+const HOURS = [
+  ["Lunes a viernes", "7:30 – 20:00"],
+  ["Sábados", "8:30 – 14:00"],
+  ["Domingos", "Cerrado"],
 ];
 
 const EMPTY = { name: "", email: "", message: "" };
@@ -29,7 +35,7 @@ function validate(v) {
   else if (v.name.trim().length > 100) e.name = "Máximo 100 caracteres.";
   if (!v.email.trim()) e.email = "Escribe tu email.";
   else if (!EMAIL_RE.test(v.email.trim())) e.email = "Ese email no parece válido.";
-  if (!v.message.trim()) e.message = "Cuéntanos algo sobre tu proyecto.";
+  if (!v.message.trim()) e.message = "Escribe tu mensaje.";
   else if (v.message.length > MAX_MESSAGE) e.message = `Máximo ${MAX_MESSAGE} caracteres.`;
   return e;
 }
@@ -67,7 +73,7 @@ export default function App() {
       });
       setValues(EMPTY);
       setMessages(getMessages());
-      setToast({ type: "ok", text: "¡Mensaje enviado! Te responderemos en menos de 24 h." });
+      setToast({ type: "ok", text: "¡Mensaje enviado! Te contestamos muy pronto." });
     } catch {
       setToast({ type: "error", text: "No se pudo enviar el mensaje. Inténtalo de nuevo." });
     } finally {
@@ -85,7 +91,7 @@ export default function App() {
       <header className="header">
         <div className="container header__inner">
           <a href="#inicio" className="logo">
-            Estudio <span>Brisa</span>
+            Café <span>La Esquina</span>
           </a>
           <a href="#contacto" className="btn btn--small">
             Contacto
@@ -96,18 +102,18 @@ export default function App() {
       <main>
         <section id="inicio" className="hero">
           <div className="container">
-            <p className="eyebrow">Estudio de diseño web</p>
-            <h1>Tu negocio, con una web que trabaja por ti.</h1>
+            <p className="eyebrow">Cafetería de barrio</p>
+            <h1>El café de cada mañana, a la vuelta de la esquina.</h1>
             <p className="hero__lead">
-              Diseñamos webs, marcas y estrategias SEO para pequeños negocios que quieren crecer
-              sin complicarse.
+              Café de especialidad, desayunos con pan de masa madre y tartas caseras en un rincón
+              tranquilo del barrio.
             </p>
             <div className="hero__actions">
               <a href="#contacto" className="btn">
-                Pide tu presupuesto
+                Reserva o encarga
               </a>
               <a href="#servicios" className="btn btn--ghost">
-                Ver servicios
+                Ver la carta
               </a>
             </div>
           </div>
@@ -115,7 +121,7 @@ export default function App() {
 
         <section id="servicios" className="section">
           <div className="container">
-            <h2>Qué hacemos</h2>
+            <h2>Nuestra carta</h2>
             <div className="cards">
               {SERVICES.map((s) => (
                 <article key={s.title} className="card">
@@ -130,12 +136,30 @@ export default function App() {
           </div>
         </section>
 
+        <section id="horario" className="section">
+          <div className="container visit">
+            <div>
+              <h2>Ven a vernos</h2>
+              <p className="muted">Calle del Olmo, 12 · Barrio ficticio</p>
+            </div>
+            <ul className="hours" aria-label="Horario">
+              {HOURS.map(([d, h]) => (
+                <li key={d}>
+                  <span>{d}</span>
+                  <strong>{h}</strong>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         <section id="contacto" className="section section--alt">
           <div className="container contact">
             <div>
-              <h2>Hablemos</h2>
+              <h2>Reservas y encargos</h2>
               <p className="muted">
-                Cuéntanos tu idea y te enviamos una propuesta sin compromiso.
+                ¿Quieres reservar mesa para un grupo o encargar una tarta? Escríbenos y te
+                contestamos enseguida.
               </p>
             </div>
 
@@ -187,7 +211,7 @@ export default function App() {
 
       <footer className="footer">
         <div className="container footer__inner">
-          <p>© {new Date().getFullYear()} Estudio Brisa · Marca ficticia (encargo de práctica)</p>
+          <p>© {new Date().getFullYear()} Café La Esquina · Cafetería ficticia (encargo de práctica)</p>
           <p className="demo">
             Demo: <strong data-testid="message-count">{messages.length}</strong> mensajes guardados ·{" "}
             <button type="button" className="link" onClick={onReset}>
